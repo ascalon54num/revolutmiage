@@ -41,5 +41,5 @@ public class CompteDto {
 
     @NotNull
     @NotBlank
-    private String IBAN;
+    private String iban;
 }

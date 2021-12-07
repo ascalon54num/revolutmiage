@@ -19,5 +19,5 @@ public class Compte {
     private String noPasseport;
     private String numTel;
     private String secret;
-    private String IBAN;
+    private String iban;
 }
