@@ -1,18 +1,15 @@
 package fr.univlorraine.miage.revolutmiage.entities.dtos;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.*;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
-public class CarteDto {
-    @NotNull
-    @NotBlank
-    private String id;
+@NoArgsConstructor
+public class NewCarte {
     @NotNull
     @NotBlank
     private String numCarte;
@@ -43,5 +40,5 @@ public class CarteDto {
     private boolean virtuelle;
     @NotNull
     @NotBlank
-    private String compte;
+    private String compteId;
 }

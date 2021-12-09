@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.UUID;
 
 @Entity
 @AllArgsConstructor
@@ -12,7 +13,7 @@ import javax.persistence.Id;
 @Setter
 public class Compte {
     @Id
-    private String id;
+    private UUID id;
     private String nom;
     private String prenom;
     private String pays;

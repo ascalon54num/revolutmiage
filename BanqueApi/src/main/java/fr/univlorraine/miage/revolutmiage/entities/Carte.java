@@ -4,7 +4,9 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import java.util.UUID;
 
 @Entity
 @AllArgsConstructor
@@ -13,7 +15,7 @@ import javax.persistence.OneToOne;
 @Setter
 public class Carte {
     @Id
-    private String id;
+    private UUID id;
     private String numCarte;
     private String code;
     private String cryptogramme;
@@ -22,6 +24,7 @@ public class Carte {
     private Double  plafond;
     private boolean sansContact;
     private boolean virtuelle;
+    @JoinColumn(name = "compte_id", referencedColumnName = "id")
     @OneToOne
     private Compte compte;
 }
