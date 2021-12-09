@@ -4,7 +4,6 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import java.time.Instant;
 import java.util.UUID;
@@ -21,7 +20,6 @@ public class Operation {
     private String libelle;
     private Float montant; //(à convertir dans la devise du pays du compte)
     private Float tauxApplique;
-    @JoinColumn(name = "compte_crediteur_id", referencedColumnName = "id")
     @OneToOne
     private Compte compteCrediteur;
     private String nomCompteCrediteur;
