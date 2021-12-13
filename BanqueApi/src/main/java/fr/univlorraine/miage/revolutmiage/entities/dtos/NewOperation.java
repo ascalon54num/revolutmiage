@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -11,6 +12,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @NoArgsConstructor
+@Accessors(chain = true)
 public class NewOperation {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone = "UTC")
     private String date;
@@ -19,10 +21,10 @@ public class NewOperation {
     private String libelle;
     @NotNull
     @NotBlank
-    private Float montant; //(à convertir dans la devise du pays du compte)
+    private Double montant; //(à convertir dans la devise du pays du compte)
     @NotNull
     @NotBlank
-    private Float tauxApplique;
+    private Double tauxApplique;
     @NotNull
     @NotBlank
     private String compteCrediteurId;

@@ -4,7 +4,7 @@ package fr.univlorraine.miage.revolutmiage.services;
 import fr.univlorraine.miage.revolutmiage.entities.dtos.NewOperation;
 import fr.univlorraine.miage.revolutmiage.entities.dtos.OperationDto;
 import fr.univlorraine.miage.revolutmiage.exceptions.CompteNotFound;
-import fr.univlorraine.miage.revolutmiage.mappers.OperationsMapper;
+import fr.univlorraine.miage.revolutmiage.mappers.OperationMapper;
 import fr.univlorraine.miage.revolutmiage.repositories.CompteRepository;
 import fr.univlorraine.miage.revolutmiage.repositories.OperationRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ import java.util.UUID;
 public class OperationService {
     private final OperationRepository repo;
     private final CompteRepository compteRepo;
-    private final OperationsMapper mapper;
+    private final OperationMapper mapper;
 
     public Iterable<OperationDto> findAll() {
         return mapper.toDto(repo.findAll());

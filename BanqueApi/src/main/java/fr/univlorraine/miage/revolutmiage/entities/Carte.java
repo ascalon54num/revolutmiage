@@ -1,6 +1,7 @@
 package fr.univlorraine.miage.revolutmiage.entities;
 
 import lombok.*;
+import lombok.experimental.Accessors;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,6 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
+@Accessors(chain = true)
 public class Carte {
     @Id
     private UUID id;

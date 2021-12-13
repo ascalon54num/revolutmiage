@@ -1,6 +1,7 @@
 package fr.univlorraine.miage.revolutmiage.entities.dtos;
 
 import lombok.*;
+import lombok.experimental.Accessors;
 
 import javax.validation.constraints.*;
 
@@ -9,6 +10,7 @@ import javax.validation.constraints.*;
 @AllArgsConstructor
 @Getter
 @Setter
+@Accessors(chain = true)
 public class CarteDto {
     @NotNull
     @NotBlank

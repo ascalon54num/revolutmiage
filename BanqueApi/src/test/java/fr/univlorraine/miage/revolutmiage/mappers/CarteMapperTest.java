@@ -17,7 +17,7 @@ class CarteMapperTest {
     public static final String CODE = "0000";
     public static final String CRYPTOGRAMME = "666";
     public static final String NUMERO_CARTE = "5000657823458954";
-    public static final String IBAN = "FR761034328909432347";
+    public static final double PLAFOND = 1000.00;
 
     @Autowired
     private CarteMapper subject;
@@ -26,16 +26,16 @@ class CarteMapperTest {
     @DisplayName("Devrait retourner l'obj en DTO")
     void toDto() {
         // GIVEN
-        final Carte obj = new Carte();
-                obj.setId(UUID.randomUUID());
-                obj.setBloquee(true);
-                obj.setLocalisation(true);
-                obj.setPlafond(1000.00);
-                obj.setSansContact(true);
-                obj.setVirtuelle(true);
-                obj.setCode(CODE);
-                obj.setCryptogramme(CRYPTOGRAMME);
-                obj.setNumCarte(NUMERO_CARTE);
+        final Carte obj = new Carte()
+                .setId(UUID.randomUUID())
+                .setBloquee(true)
+                .setLocalisation(true)
+                .setPlafond(PLAFOND)
+                .setSansContact(true)
+                .setVirtuelle(true)
+                .setCode(CODE)
+                .setCryptogramme(CRYPTOGRAMME)
+                .setNumCarte(NUMERO_CARTE);
                 final Compte c = new Compte();
                 UUID id = UUID.randomUUID();
                 c.setId(id);
@@ -47,7 +47,7 @@ class CarteMapperTest {
         // THEN
         Assertions.assertTrue(actual.isBloquee());
         Assertions.assertTrue(actual.isLocalisation());
-        Assertions.assertEquals(1000.00,actual.getPlafond());
+        Assertions.assertEquals(PLAFOND,actual.getPlafond());
         Assertions.assertTrue(actual.isSansContact());
         Assertions.assertTrue(actual.isVirtuelle());
         Assertions.assertEquals(CODE, actual.getCode());
@@ -60,15 +60,15 @@ class CarteMapperTest {
     @DisplayName("Devrait retourner le DTO en obj")
     void toObj() {
         // GIVEN
-        final NewCarte dto = new NewCarte();
-                dto.setBloquee(true);
-                dto.setLocalisation(true);
-                dto.setPlafond(1000.00);
-                dto.setSansContact(true);
-                dto.setVirtuelle(true);
-                dto.setCode(CODE);
-                dto.setCryptogramme(CRYPTOGRAMME);
-                dto.setNumCarte(NUMERO_CARTE);
+        final NewCarte dto = new NewCarte()
+                .setBloquee(true)
+                .setLocalisation(true)
+                .setPlafond(PLAFOND)
+                .setSansContact(true)
+                .setVirtuelle(true)
+                .setCode(CODE)
+                .setCryptogramme(CRYPTOGRAMME)
+                .setNumCarte(NUMERO_CARTE);
                 String uuid = UUID.randomUUID().toString();
                 dto.setCompteId(uuid);
 
@@ -78,7 +78,7 @@ class CarteMapperTest {
         // THEN
         Assertions.assertTrue(actual.isBloquee());
         Assertions.assertTrue(actual.isLocalisation());
-        Assertions.assertEquals(1000.00,actual.getPlafond());
+        Assertions.assertEquals(PLAFOND,actual.getPlafond());
         Assertions.assertTrue(actual.isSansContact());
         Assertions.assertTrue(actual.isVirtuelle());
         Assertions.assertEquals(CODE, actual.getCode());

@@ -2,6 +2,7 @@ package fr.univlorraine.miage.revolutmiage.entities.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
+import lombok.experimental.Accessors;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -12,6 +13,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @Getter
 @Setter
+@Accessors(chain = true)
 public class OperationDto {
     @NotNull
     @NotBlank
@@ -23,10 +25,10 @@ public class OperationDto {
     private String libelle;
     @NotNull
     @NotBlank
-    private Float montant; //(à convertir dans la devise du pays du compte)
+    private Double montant; //(à convertir dans la devise du pays du compte)
     @NotNull
     @NotBlank
-    private Float tauxApplique;
+    private Double tauxApplique;
     @NotNull
     @NotBlank
     private String compteCrediteur;
