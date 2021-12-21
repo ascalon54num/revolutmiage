@@ -7,6 +7,9 @@ import fr.univlorraine.miage.revolutmiage.repositories.CompteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class CompteService {
@@ -19,8 +22,13 @@ public class CompteService {
 
     public CompteDto create(NewCompte newCompte) {
         var nc = mapper.toObject(newCompte);
+        nc.setId(UUID.randomUUID().toString());
         nc = repo.save(nc);
 
         return mapper.toDto(nc);
+    }
+
+    public Optional<CompteDto> findById(String id) {
+        return Optional.of(mapper.toDto(repo.findById(id).get()));
     }
 }

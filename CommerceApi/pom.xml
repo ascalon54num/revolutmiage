@@ -5,14 +5,14 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.5.6</version>
+		<version>2.6.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>fr.univlorraine.miage</groupId>
-	<artifactId>revolutmiage</artifactId>
+	<artifactId>revolutcommercemiage</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>revolutmiage</name>
-	<description>Demo project for Spring Boot</description>
+	<name>revolutcommercemiage</name>
+	<description>Api de commerce appelant l&apos;API de banque</description>
 	<properties>
 		<java.version>11</java.version>
 		<maven.compiler.version>3.8.1</maven.compiler.version>

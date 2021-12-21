@@ -27,7 +27,7 @@ class CarteMapperTest {
     void toDto() {
         // GIVEN
         final Carte obj = new Carte()
-                .setId(UUID.randomUUID())
+                .setId(UUID.randomUUID().toString())
                 .setBloquee(true)
                 .setLocalisation(true)
                 .setPlafond(PLAFOND)
@@ -38,7 +38,7 @@ class CarteMapperTest {
                 .setNumCarte(NUMERO_CARTE);
                 final Compte c = new Compte();
                 UUID id = UUID.randomUUID();
-                c.setId(id);
+                c.setId(id.toString());
                 obj.setCompte(c);
 
         // WHEN

@@ -17,9 +17,9 @@ import java.util.UUID;
 
 @SpringBootTest
 class OperationMapperTest {
-    public static final UUID ID = UUID.randomUUID();
+    public static final String ID = UUID.randomUUID().toString();
     public static final String CATEGORIE = "Paiement";
-    public static final UUID idCompte = UUID.randomUUID();
+    public static final String idCompte = UUID.randomUUID().toString();
     public static final Compte CREDITEUR = new Compte().setId(idCompte);
     public static final LocalDate DATE = LocalDate.parse("2021-02-12", DateTimeFormatter.ofPattern("yyyy-M-d", Locale.FRANCE));
     public static final String LIBELLE = "Achat pizza";
@@ -51,7 +51,7 @@ class OperationMapperTest {
         final OperationDto actual = subject.toDto(obj);
 
         // THEN
-        Assertions.assertEquals(idCompte.toString(),actual.getCompteCrediteur());
+        Assertions.assertEquals(idCompte,actual.getCompteCrediteur());
         Assertions.assertEquals(CATEGORIE,actual.getCategorie());
         Assertions.assertEquals(DATE.toString(),actual.getDate());
         Assertions.assertEquals(PAYS, actual.getPays());
@@ -59,7 +59,7 @@ class OperationMapperTest {
         Assertions.assertEquals(NOM_COMPTE_CREDITEUR, actual.getNomCompteCrediteur());
         Assertions.assertEquals(MONTANT, actual.getMontant());
         Assertions.assertEquals(TAUX_APPLIQUE, actual.getTauxApplique());
-        Assertions.assertEquals(ID.toString(),actual.getId());
+        Assertions.assertEquals(ID,actual.getId());
     }
 
     @Test
@@ -73,7 +73,7 @@ class OperationMapperTest {
                 .setNomCompteCrediteur(NOM_COMPTE_CREDITEUR)
                 .setMontant(MONTANT)
                 .setPays(PAYS)
-                .setCompteCrediteurId(idCompte.toString())
+                .setCompteCrediteurId(idCompte)
                 .setTauxApplique(TAUX_APPLIQUE);
 
 

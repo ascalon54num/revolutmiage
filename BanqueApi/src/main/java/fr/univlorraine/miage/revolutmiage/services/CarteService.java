@@ -10,6 +10,9 @@ import fr.univlorraine.miage.revolutmiage.repositories.CompteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class CarteService {
@@ -29,8 +32,13 @@ public class CarteService {
                         .orElseThrow(() -> CompteNotFound.of(newCarte));
 
         nc.setCompte(compte);
+        nc.setId(UUID.randomUUID().toString());
         nc = repo.save(nc);
 
         return mapper.toDto(nc);
+    }
+
+    public Optional<CarteDto> findById(String id) {
+        return Optional.of(mapper.toDto(repo.findById(id).get()));
     }
 }

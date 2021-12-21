@@ -22,13 +22,14 @@ public class NewOperation {
     @NotNull
     @NotBlank
     private Double montant; //(à convertir dans la devise du pays du compte)
-    @NotNull
-    @NotBlank
+
     private Double tauxApplique;
     @NotNull
     @NotBlank
     private String compteCrediteurId;
     private String nomCompteCrediteur;
     private String categorie; //(personne, restaurant, transport, commerces, énergies, communication...)
+    @NotNull
+    @NotBlank
     private String pays;
 }

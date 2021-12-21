@@ -17,7 +17,7 @@ import java.util.UUID;
 @Accessors(chain = true)
 public class Operation {
     @Id
-    private UUID id;
+    private String id;
     private LocalDate date;
     private String libelle;
     private Double montant; //(à convertir dans la devise du pays du compte)

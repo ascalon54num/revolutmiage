@@ -10,6 +10,7 @@ import fr.univlorraine.miage.revolutmiage.repositories.OperationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -31,9 +32,13 @@ public class OperationService {
                         .orElseThrow(() -> CompteNotFound.of(newOp));
 
         no.setCompteCrediteur(compte);
-        no.setId(UUID.randomUUID());
+        no.setId(UUID.randomUUID().toString());
         no = repo.save(no);
 
         return mapper.toDto(no);
+    }
+
+    public Optional<OperationDto> findById(String id) {
+        return Optional.of(mapper.toDto(repo.findById(id).get()));
     }
 }

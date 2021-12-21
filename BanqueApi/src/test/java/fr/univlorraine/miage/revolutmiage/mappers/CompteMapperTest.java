@@ -21,7 +21,7 @@ class CompteMapperTest {
     public static final String PAYS = "France";
     public static final String TEL = "+33650214256";
     public static final String SECRET = "hf56dq+6e98fdf65dqqe";
-    public static final UUID ID = UUID.randomUUID();
+    public static final String ID = UUID.randomUUID().toString();
     @Autowired
     private CompteMapper subject;
 
@@ -50,7 +50,7 @@ class CompteMapperTest {
         Assertions.assertEquals(PASSEPORT, actual.getNoPasseport());
         Assertions.assertEquals(PAYS, actual.getPays());
         Assertions.assertEquals(SECRET, actual.getSecret());
-        Assertions.assertEquals(ID.toString(),actual.getId());
+        Assertions.assertEquals(ID,actual.getId());
     }
 
     @Test

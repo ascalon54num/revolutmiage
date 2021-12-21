@@ -3,7 +3,6 @@ package fr.univlorraine.miage.revolutmiage.services;
 import fr.univlorraine.miage.revolutmiage.entities.Compte;
 import fr.univlorraine.miage.revolutmiage.entities.dtos.CompteDto;
 import fr.univlorraine.miage.revolutmiage.repositories.CompteRepository;
-import org.assertj.core.api.IterableSizeAssert;
 import org.assertj.core.internal.Iterables;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -11,8 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.UUID;
 
 @SpringBootTest
@@ -26,8 +23,8 @@ class CompteServiceTest {
     public static final String PAYS = "France";
     public static final String TEL = "+33650214256";
     public static final String SECRET = "hf56dq+6e98fdf65dqqe";
-    public static final UUID ID = UUID.randomUUID();
-    public static final UUID ID2 = UUID.randomUUID();
+    public static final String ID = UUID.randomUUID().toString();
+    public static final String ID2 = UUID.randomUUID().toString();
     @Autowired
     private CompteService subject;
     @Autowired
@@ -57,7 +54,8 @@ class CompteServiceTest {
         repo.save(obj);
         repo.save(obj2);
         Iterable<CompteDto> comptes = subject.findAll();
+        System.out.println(comptes);
         Iterables.instance().assertHasSize(null,comptes,2);
-        Assertions.assertEquals(ID.toString(), org.mockito.internal.util.collections.Iterables.firstOf(comptes).getId());
+        Assertions.assertEquals(ID, org.mockito.internal.util.collections.Iterables.firstOf(comptes).getId());
     }
 }

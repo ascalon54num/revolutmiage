@@ -17,7 +17,6 @@ import java.util.Locale;
 public interface OperationMapper {
 
     @Mapping(target = "date", expression = "java(entity.getDate().toString())")
-    @Mapping(target = "id", expression = "java(entity.getId().toString())")
     @Mapping(target = "compteCrediteur", expression = "java(entity.getCompteCrediteur().getId().toString())")
     OperationDto toDto(Operation entity);
 
@@ -29,7 +28,6 @@ public interface OperationMapper {
     }
 
     @Mapping(target = "date", expression = "java(LocalDate.parse(dto.getDate(), DateTimeFormatter.ofPattern(\"yyyy-M-d\",Locale.FRANCE)))")
-    @Mapping(target = "id", ignore = true)
     @Mapping(target = "compteCrediteur", ignore = true)
     Operation toObject(NewOperation dto);
 }

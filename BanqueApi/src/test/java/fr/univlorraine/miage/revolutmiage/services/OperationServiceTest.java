@@ -20,10 +20,10 @@ import java.util.UUID;
 
 @SpringBootTest
 class OperationServiceTest {
-    public static final UUID ID = UUID.randomUUID();
-    public static final UUID ID2 = UUID.randomUUID();
+    public static final String ID = UUID.randomUUID().toString();
+    public static final String ID2 = UUID.randomUUID().toString();
     public static final String CATEGORIE = "Paiement";
-    public static final UUID idCompte = UUID.randomUUID();
+    public static final String idCompte = UUID.randomUUID().toString();
     public static final Compte CREDITEUR = new Compte().setId(idCompte);
     public static final LocalDate DATE = LocalDate.parse("2021-02-12", DateTimeFormatter.ofPattern("yyyy-M-d", Locale.FRANCE));
     public static final String LIBELLE = "Achat pizza";
@@ -68,7 +68,7 @@ class OperationServiceTest {
         repo.save(obj2);
         Iterable<OperationDto> cartes = subject.findAll();
         Iterables.instance().assertHasSize(null,cartes,2);
-        Assertions.assertEquals(ID.toString(), org.mockito.internal.util.collections.Iterables.firstOf(cartes).getId());
+        Assertions.assertEquals(ID, org.mockito.internal.util.collections.Iterables.firstOf(cartes).getId());
         Assertions.assertEquals(LIBELLE, org.mockito.internal.util.collections.Iterables.firstOf(cartes).getLibelle());
     }
 }

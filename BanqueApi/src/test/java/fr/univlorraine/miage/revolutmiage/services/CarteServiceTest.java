@@ -21,8 +21,8 @@ class CarteServiceTest {
     public static final String CRYPTOGRAMME = "666";
     public static final String NUMERO_CARTE = "5000657823458954";
     public static final double PLAFOND = 1000.00;
-    public static final UUID ID = UUID.randomUUID();
-    public static final UUID ID2 = UUID.randomUUID();
+    public static final String ID = UUID.randomUUID().toString();
+    public static final String ID2 = UUID.randomUUID().toString();
     @Autowired
     private CarteService subject;
     @Autowired
@@ -35,7 +35,7 @@ class CarteServiceTest {
     void testFindAll() {
         final Compte c = new Compte();
         UUID id = UUID.randomUUID();
-        c.setId(id);
+        c.setId(id.toString());
         repoCompte.save(c);
         final Carte obj = new Carte()
                 .setId(ID)
@@ -64,7 +64,7 @@ class CarteServiceTest {
         repo.save(obj2);
         Iterable<CarteDto> cartes = subject.findAll();
         Iterables.instance().assertHasSize(null,cartes,2);
-        Assertions.assertEquals(ID.toString(), org.mockito.internal.util.collections.Iterables.firstOf(cartes).getId());
+        Assertions.assertEquals(ID, org.mockito.internal.util.collections.Iterables.firstOf(cartes).getId());
         Assertions.assertEquals(CODE, org.mockito.internal.util.collections.Iterables.firstOf(cartes).getCode());
     }
 }

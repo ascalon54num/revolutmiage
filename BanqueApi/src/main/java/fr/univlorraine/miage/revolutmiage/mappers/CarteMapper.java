@@ -13,7 +13,6 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface CarteMapper {
 
-    @Mapping(target = "id", expression = "java(entity.getId().toString())")
     @Mapping(target = "compte", expression ="java(entity.getCompte().getId().toString())")
     CarteDto toDto(Carte entity);
 
@@ -24,7 +23,6 @@ public interface CarteMapper {
         return result;
     }
 
-    @Mapping(target = "id", ignore = true)
     @Mapping(target = "compte", ignore = true)
     Carte toObject(NewCarte dto);
 }

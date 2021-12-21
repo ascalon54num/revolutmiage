@@ -8,10 +8,10 @@ import org.mapstruct.Mapping;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Mapper(componentModel = "spring")
 public interface CompteMapper {
-    @Mapping(target = "id", expression = "java(entity.getId().toString())")
     CompteDto toDto(Compte entity);
 
     default List<CompteDto> toDto(Iterable<Compte> comptes) {
@@ -20,6 +20,6 @@ public interface CompteMapper {
 
         return result;
     }
-    @Mapping(target = "id", ignore = true)
+
     Compte toObject(NewCompte dto);
 }

@@ -15,7 +15,7 @@ import java.util.UUID;
 @Accessors(chain = true)
 public class Compte {
     @Id
-    private UUID id;
+    private String id;
     private String nom;
     private String prenom;
     private String pays;

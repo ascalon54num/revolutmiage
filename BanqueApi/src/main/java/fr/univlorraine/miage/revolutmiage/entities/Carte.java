@@ -16,7 +16,7 @@ import java.util.UUID;
 @Accessors(chain = true)
 public class Carte {
     @Id
-    private UUID id;
+    private String id;
     private String numCarte;
     private String code;
     private String cryptogramme;

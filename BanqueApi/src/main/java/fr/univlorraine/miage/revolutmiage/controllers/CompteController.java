@@ -1,5 +1,6 @@
 package fr.univlorraine.miage.revolutmiage.controllers;
 
+import fr.univlorraine.miage.revolutmiage.assembler.CompteAssembler;
 import fr.univlorraine.miage.revolutmiage.entities.Compte;
 import fr.univlorraine.miage.revolutmiage.entities.dtos.CompteDto;
 import fr.univlorraine.miage.revolutmiage.entities.dtos.NewCompte;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.net.URI;
+import java.util.Optional;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
@@ -20,10 +22,12 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 @ExposesResourceFor(Compte.class)
 public class CompteController {
     private final CompteService compteService;
+    private final CompteAssembler assembler;
+
     @GetMapping
     public ResponseEntity<?> getAllComptes() {
         Iterable<CompteDto> allComptes = compteService.findAll();
-        return ResponseEntity.ok(allComptes);
+        return ResponseEntity.ok(assembler.toCollectionModel(allComptes));
     }
 
     @PostMapping
@@ -32,5 +36,12 @@ public class CompteController {
         CompteDto saved = compteService.create(c);
         URI location = linkTo(CompteController.class).slash(saved.getId()).toUri();
         return ResponseEntity.created(location).build();
+    }
+
+    @GetMapping(value="/{compteId}")
+    public ResponseEntity<?> getOneCompte(@PathVariable("compteId") String id) {
+        return Optional.ofNullable(compteService.findById(id)).filter(Optional::isPresent)
+                .map(i -> ResponseEntity.ok(assembler.toModel(i.get())))
+                .orElse(ResponseEntity.notFound().build());
     }
 }
