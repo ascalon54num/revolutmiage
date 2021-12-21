@@ -25,7 +25,7 @@
       network_mode: bridge
       container_name: banque_api
       build:
-        context: ../
+        context: ./
         dockerfile: Dockerfile
       expose:
         - 8080
@@ -36,5 +36,18 @@
         - postgres
       links:
         - postgres
+    COMMERCANT_API:
+      image: commerce_api:latest
+      network_mode: bridge
+      container_name: commerce_api
+      build:
+        context: ./
+        dockerfile: Dockerfile_commerce
+      expose:
+        - 8082
+      ports:
+        - "8082:8082"
+      restart: unless-stopped
+    
   volumes:
     dbbanquedata:
