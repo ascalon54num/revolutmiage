@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      discovery:
+        ip-address: consul
+        prefer-ip-address: true
+        locator:
+          enabled: true
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: '*'
+            allowedMethods:
+              - GET
+              - POST
+      routes:
+        - id: commerce
+          uri: lb://commerce-service/
+          predicates:
+            - Path=/commerce/**
+        - id: banque
+          uri: lb://banque-service/
+          predicates:
+            - Path=/banque/**
+    loadbalancer:
+      ribbon:
+        enabled: false
+    consul:
+      host: consul
+      port: 8500
+      config:
+        enabled: false
+
+server:
+  port: 8080
+
