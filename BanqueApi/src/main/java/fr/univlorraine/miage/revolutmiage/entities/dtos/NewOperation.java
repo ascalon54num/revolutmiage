@@ -20,7 +20,6 @@ public class NewOperation {
     @NotBlank
     private String libelle;
     @NotNull
-    @NotBlank
     private Double montant; //(à convertir dans la devise du pays du compte)
 
     private Double tauxApplique;

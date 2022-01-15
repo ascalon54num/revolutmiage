@@ -24,14 +24,26 @@ class OperationServiceTest {
     public static final String ID2 = UUID.randomUUID().toString();
     public static final String CATEGORIE = "Paiement";
     public static final String idCompte = UUID.randomUUID().toString();
-    public static final Compte CREDITEUR = new Compte().setId(idCompte);
+    public static final String NOM = "Dupont";
+    public static final String IBAN = "FR761034328909432347";
+    public static final String PRENOM = "Jean";
+    public static final String PASSEPORT = "09Az54625";
+    public static final String PAYS = "France";
+    public static final String TEL = "+33650214256";
+    public static final String SECRET = "hf56dq+6e98fdf65dqqe";
+    public static final Compte CREDITEUR = new Compte().setId(idCompte).setIban(IBAN)
+            .setNom(NOM)
+            .setPrenom(PRENOM)
+            .setNoPasseport(PASSEPORT)
+            .setPays(PAYS)
+            .setNumTel(TEL)
+            .setSecret(SECRET);
     public static final LocalDate DATE = LocalDate.parse("2021-02-12", DateTimeFormatter.ofPattern("yyyy-M-d", Locale.FRANCE));
     public static final String LIBELLE = "Achat pizza";
     public static final String LIBELLE2 = "Vente pizza";
     public static final String NOM_COMPTE_CREDITEUR = "Dupont";
     public static final double TAUX_APPLIQUE = 1.5;
     public static final double MONTANT = 18.00;
-    public static final String PAYS = "France";
     @Autowired
     private OperationService subject;
     @Autowired
@@ -70,5 +82,8 @@ class OperationServiceTest {
         Iterables.instance().assertHasSize(null,cartes,2);
         Assertions.assertEquals(ID, org.mockito.internal.util.collections.Iterables.firstOf(cartes).getId());
         Assertions.assertEquals(LIBELLE, org.mockito.internal.util.collections.Iterables.firstOf(cartes).getLibelle());
+        repo.delete(obj);
+        repo.delete(obj2);
+        repoCompte.delete(CREDITEUR);
     }
 }

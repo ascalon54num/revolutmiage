@@ -14,6 +14,7 @@ import javax.validation.constraints.*;
 public class NewCarte {
     @NotNull
     @NotBlank
+    @Pattern(regexp = "^[0-9]{16}")
     private String numCarte;
     @NotNull
     @NotBlank
@@ -22,25 +23,20 @@ public class NewCarte {
     private String code;
     @NotNull
     @NotBlank
-    @Size(min=4, max=4)
+    @Size(min=3, max=3)
     @Pattern(regexp = "^[0-9]{3}")
     private String cryptogramme;
     @NotNull
-    @NotBlank
     private boolean bloquee;
     @NotNull
-    @NotBlank
     private boolean localisation;
-    @NotBlank
+    @NotNull
     @Positive
     private Double  plafond;
     @NotNull
-    @NotBlank
     private boolean sansContact;
     @NotNull
-    @NotBlank
     private boolean virtuelle;
     @NotNull
-    @NotBlank
     private String compteId;
 }

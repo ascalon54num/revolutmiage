@@ -1,4 +1,4 @@
-package fr.univlorraine.miage.revolutmiage.jwt.infra.config;
+package fr.univlorraine.miage.revolutmiage.utils.jwt.infra.config;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

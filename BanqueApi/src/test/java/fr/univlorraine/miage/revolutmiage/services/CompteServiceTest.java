@@ -57,5 +57,7 @@ class CompteServiceTest {
         System.out.println(comptes);
         Iterables.instance().assertHasSize(null,comptes,2);
         Assertions.assertEquals(ID, org.mockito.internal.util.collections.Iterables.firstOf(comptes).getId());
+        repo.delete(obj);
+        repo.delete(obj2);
     }
 }

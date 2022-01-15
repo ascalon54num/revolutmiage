@@ -1,4 +1,4 @@
-package fr.univlorraine.miage.revolutmiage.jwt.domain.cmd;
+package fr.univlorraine.miage.revolutmiage.utils.jwt.domain.cmd;
 
 import lombok.Getter;
 import lombok.Setter;

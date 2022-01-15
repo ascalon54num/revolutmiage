@@ -1,7 +1,7 @@
 FROM maven:3-openjdk-11 AS BUILDER
 WORKDIR /app
 COPY ./BanqueApi .
-RUN mvn -e -B -DskipTests clean package
+RUN mvn -e -B clean package
 
 FROM openjdk:11
 COPY --from=BUILDER /app/target/revolutmiage-0.0.1-SNAPSHOT.jar .

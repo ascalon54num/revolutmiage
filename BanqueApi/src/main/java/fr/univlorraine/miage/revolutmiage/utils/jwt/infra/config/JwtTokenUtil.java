@@ -1,4 +1,4 @@
-package fr.univlorraine.miage.revolutmiage.jwt.infra.config;
+package fr.univlorraine.miage.revolutmiage.utils.jwt.infra.config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

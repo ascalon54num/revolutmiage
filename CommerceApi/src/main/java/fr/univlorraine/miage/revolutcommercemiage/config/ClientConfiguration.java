@@ -1,4 +1,4 @@
-package org.miage.conversionservice;
+package fr.univlorraine.miage.revolutcommercemiage.config;
 
 import org.springframework.cloud.loadbalancer.core.RoundRobinLoadBalancer;
 import org.springframework.cloud.loadbalancer.core.ServiceInstanceListSupplier;

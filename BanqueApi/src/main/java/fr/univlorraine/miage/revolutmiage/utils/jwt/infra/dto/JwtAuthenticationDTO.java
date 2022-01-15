@@ -1,4 +1,4 @@
-package fr.univlorraine.miage.revolutmiage.jwt.infra.dto;
+package fr.univlorraine.miage.revolutmiage.utils.jwt.infra.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

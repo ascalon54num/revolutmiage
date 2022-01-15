@@ -1,4 +1,4 @@
-package fr.univlorraine.miage.revolutmiage.assembler;
+package fr.univlorraine.miage.revolutmiage.assemblers;
 
 import fr.univlorraine.miage.revolutmiage.controllers.CarteController;
 import fr.univlorraine.miage.revolutmiage.controllers.CompteController;

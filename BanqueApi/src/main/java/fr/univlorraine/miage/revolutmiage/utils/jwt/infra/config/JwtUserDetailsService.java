@@ -1,7 +1,7 @@
-package fr.univlorraine.miage.revolutmiage.jwt.infra.config;
+package fr.univlorraine.miage.revolutmiage.utils.jwt.infra.config;
 
-import fr.univlorraine.miage.revolutmiage.utilisateur.domain.catalog.UtilisateurCatalog;
-import fr.univlorraine.miage.revolutmiage.utilisateur.domain.entity.Utilisateur;
+import fr.univlorraine.miage.revolutmiage.entities.Compte;
+import fr.univlorraine.miage.revolutmiage.repositories.CompteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -17,20 +17,20 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class JwtUserDetailsService implements UserDetailsService {
 
-    private final UtilisateurCatalog utilisateurCatalog;
+    private final CompteRepository compteRepo;
 
     @Override
-    public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-        final Optional<Utilisateur> optionalUtilisateur = utilisateurCatalog.findByNumeroPasseport(username);
+    public UserDetails loadUserByUsername(final String passport) throws UsernameNotFoundException {
+        final Optional<Compte> optionalCompte = compteRepo.findByNoPasseport(passport);
 
-        if (optionalUtilisateur.isPresent()) {
-            final Utilisateur currentUtilisateur = optionalUtilisateur.get();
-            return new User(username, currentUtilisateur.getSecret(),
+        if (optionalCompte.isPresent()) {
+            final Compte currentUtilisateur = optionalCompte.get();
+            return new User(passport, currentUtilisateur.getSecret(),
                     new ArrayList<>() {{
                         add(new SimpleGrantedAuthority("ROLE_USER"));
                     }});
         } else {
-            throw new UsernameNotFoundException("Utilisateur non trouvé avec le passeport : " + username);
+            throw new UsernameNotFoundException("Utilisateur non trouvé avec le passeport : " + passport);
         }
     }
 }

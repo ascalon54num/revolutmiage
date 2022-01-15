@@ -1,12 +1,14 @@
 package fr.univlorraine.miage.revolutmiage.services;
 
 
+import fr.univlorraine.miage.revolutmiage.entities.Operation;
 import fr.univlorraine.miage.revolutmiage.entities.dtos.NewOperation;
 import fr.univlorraine.miage.revolutmiage.entities.dtos.OperationDto;
 import fr.univlorraine.miage.revolutmiage.exceptions.CompteNotFound;
 import fr.univlorraine.miage.revolutmiage.mappers.OperationMapper;
 import fr.univlorraine.miage.revolutmiage.repositories.CompteRepository;
 import fr.univlorraine.miage.revolutmiage.repositories.OperationRepository;
+import fr.univlorraine.miage.revolutmiage.services.validaters.OperationValidater;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,7 @@ import java.util.UUID;
 public class OperationService {
     private final OperationRepository repo;
     private final CompteRepository compteRepo;
+    private final OperationValidater validater;
     private final OperationMapper mapper;
 
     public Iterable<OperationDto> findAll() {
@@ -25,6 +28,7 @@ public class OperationService {
     }
 
     public OperationDto create(NewOperation newOp) {
+        validater.validate(newOp);
         var no = mapper.toObject(newOp);
         var compte =
                 compteRepo
@@ -38,7 +42,15 @@ public class OperationService {
         return mapper.toDto(no);
     }
 
-    public Optional<OperationDto> findById(String id) {
-        return Optional.of(mapper.toDto(repo.findById(id).get()));
+    public Optional<Operation> findById(String id) {
+        return repo.findById(id);
+    }
+
+    public void delete(Operation operation) {
+        repo.delete(operation);
+    }
+
+    public void update(Operation op) {
+        repo.save(op);
     }
 }

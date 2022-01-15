@@ -14,10 +14,18 @@ import java.util.UUID;
 
 @SpringBootTest
 class CarteMapperTest {
+    public  static final String ID = UUID.randomUUID().toString();
     public static final String CODE = "0000";
     public static final String CRYPTOGRAMME = "666";
     public static final String NUMERO_CARTE = "5000657823458954";
     public static final double PLAFOND = 1000.00;
+    public static final String NOM = "Dupont";
+    public static final String IBAN = "FR761034328909432347";
+    public static final String PRENOM = "Jean";
+    public static final String PASSEPORT = "09Az54625";
+    public static final String PAYS = "France";
+    public static final String TEL = "+33650214256";
+    public static final String SECRET = "hf56dq+6e98fdf65dqqe";
 
     @Autowired
     private CarteMapper subject;
@@ -27,7 +35,7 @@ class CarteMapperTest {
     void toDto() {
         // GIVEN
         final Carte obj = new Carte()
-                .setId(UUID.randomUUID().toString())
+                .setId(ID)
                 .setBloquee(true)
                 .setLocalisation(true)
                 .setPlafond(PLAFOND)
@@ -38,7 +46,13 @@ class CarteMapperTest {
                 .setNumCarte(NUMERO_CARTE);
                 final Compte c = new Compte();
                 UUID id = UUID.randomUUID();
-                c.setId(id.toString());
+                c.setId(id.toString()).setIban(IBAN)
+                        .setNom(NOM)
+                        .setPrenom(PRENOM)
+                        .setNoPasseport(PASSEPORT)
+                        .setPays(PAYS)
+                        .setNumTel(TEL)
+                        .setSecret(SECRET);
                 obj.setCompte(c);
 
         // WHEN

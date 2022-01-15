@@ -29,19 +29,15 @@ public class CarteDto {
     @Pattern(regexp = "^[0-9]{3}")
     private String cryptogramme;
     @NotNull
-    @NotBlank
     private boolean bloquee;
     @NotNull
-    @NotBlank
     private boolean localisation;
-    @NotBlank
+    @NotNull
     @Positive
     private Double  plafond;
     @NotNull
-    @NotBlank
     private boolean sansContact;
     @NotNull
-    @NotBlank
     private boolean virtuelle;
     @NotNull
     @NotBlank

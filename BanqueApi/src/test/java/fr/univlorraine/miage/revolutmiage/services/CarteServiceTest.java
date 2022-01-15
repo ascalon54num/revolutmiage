@@ -21,6 +21,13 @@ class CarteServiceTest {
     public static final String CRYPTOGRAMME = "666";
     public static final String NUMERO_CARTE = "5000657823458954";
     public static final double PLAFOND = 1000.00;
+    public static final String NOM = "Dupont";
+    public static final String IBAN = "FR761034328909432347";
+    public static final String PRENOM = "Jean";
+    public static final String PASSEPORT = "09Az54625";
+    public static final String PAYS = "France";
+    public static final String TEL = "+33650214256";
+    public static final String SECRET = "hf56dq+6e98fdf65dqqe";
     public static final String ID = UUID.randomUUID().toString();
     public static final String ID2 = UUID.randomUUID().toString();
     @Autowired
@@ -35,7 +42,13 @@ class CarteServiceTest {
     void testFindAll() {
         final Compte c = new Compte();
         UUID id = UUID.randomUUID();
-        c.setId(id.toString());
+        c.setId(id.toString()).setIban(IBAN)
+                .setNom(NOM)
+                .setPrenom(PRENOM)
+                .setNoPasseport(PASSEPORT)
+                .setPays(PAYS)
+                .setNumTel(TEL)
+                .setSecret(SECRET);
         repoCompte.save(c);
         final Carte obj = new Carte()
                 .setId(ID)
@@ -66,5 +79,8 @@ class CarteServiceTest {
         Iterables.instance().assertHasSize(null,cartes,2);
         Assertions.assertEquals(ID, org.mockito.internal.util.collections.Iterables.firstOf(cartes).getId());
         Assertions.assertEquals(CODE, org.mockito.internal.util.collections.Iterables.firstOf(cartes).getCode());
+        repo.delete(obj);
+        repo.delete(obj2);
+        repoCompte.delete(c);
     }
 }

@@ -1,5 +1,6 @@
 package fr.univlorraine.miage.revolutmiage.services;
 
+import fr.univlorraine.miage.revolutmiage.entities.Carte;
 import fr.univlorraine.miage.revolutmiage.entities.dtos.CarteDto;
 import fr.univlorraine.miage.revolutmiage.entities.dtos.NewCarte;
 import fr.univlorraine.miage.revolutmiage.exceptions.CompteNotFound;
@@ -7,6 +8,7 @@ import fr.univlorraine.miage.revolutmiage.mappers.CarteMapper;
 
 import fr.univlorraine.miage.revolutmiage.repositories.CarteRepository;
 import fr.univlorraine.miage.revolutmiage.repositories.CompteRepository;
+import fr.univlorraine.miage.revolutmiage.services.validaters.CarteValidater;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class CarteService {
     private final CarteRepository repo;
+    private final CarteValidater validater;
     private final CompteRepository compteRepo;
     private final CarteMapper mapper;
 
@@ -25,6 +28,7 @@ public class CarteService {
     }
 
     public CarteDto create(NewCarte newCarte) {
+        validater.validate(newCarte);
         var nc = mapper.toObject(newCarte);
         var compte =
                 compteRepo
@@ -38,7 +42,19 @@ public class CarteService {
         return mapper.toDto(nc);
     }
 
-    public Optional<CarteDto> findById(String id) {
-        return Optional.of(mapper.toDto(repo.findById(id).get()));
+    public Optional<Carte> findById(String id) {
+        return repo.findById(id);
+    }
+
+    public void delete(Carte carte) {
+        repo.delete(carte);
+    }
+
+    public void update(Carte carte) {
+        repo.save(carte);
+    }
+
+    public Optional<Carte> findByNumCarte(String numCarte) {
+        return repo.findByNumCarte(numCarte);
     }
 }
